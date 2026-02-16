@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture Overview - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span
+                    class="sep">/</span><span>Architecture</span><span class="sep">/</span><span>System Overview</span>
+            </nav>
+            <h1>System Architecture</h1>
+
+            <h2 id="intro">Introduction</h2>
+            <p>The Secure Intelligence Document Vault uses a modern <strong>microservices architecture</strong> designed
+                with zero-trust principles and defense-in-depth security. Every component is independently deployable,
+                stateless for horizontal scaling, and secured through multiple validation layers from the network edge
+                to the data persistence tier.</p>
+
+            <h2 id="principles">Architecture Principles</h2>
+            <ol>
+                <li><strong>Microservices</strong> — independently deployable, scalable services with clear boundaries
+                </li>
+                <li><strong>Stateless Design</strong> — all services are stateless for horizontal scaling without
+                    session affinity</li>
+                <li><strong>Defense in Depth</strong> — multiple security layers from edge to database</li>
+                <li><strong>Separation of Concerns</strong> — clear service boundaries and minimal coupling</li>
+                <li><strong>Cloud-Agnostic</strong> — deployable on AWS, Azure, GCP, or on-premise environments</li>
+            </ol>
+
+            <h2 id="diagram">High-Level Architecture</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">System Architecture Overview</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in" title="Zoom In">+</button>
+                        <button class="zoom-out" title="Zoom Out">−</button>
+                        <button class="zoom-reset" title="Reset">↺</button>
+                        <button class="zoom-fullscreen" title="Fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/Secure Intelligence Document Vault - High-Level System Architecture.svg"
+                        alt="System Architecture Overview diagram showing the six-layer microservices architecture including Presentation, API Gateway, Application Services, Data Persistence, External Services, and Infrastructure layers">
+                </div>
+            </div>
+
+            <h2 id="layers">Architecture Layers</h2>
+            <h3 id="presentation">1. Presentation Layer</h3>
+            <p>Client-facing interfaces including a React SPA web application, mobile applications (iOS/Android), and a
+                dedicated Admin Portal for system management.</p>
+
+            <h3 id="gateway">2. API Gateway & Security Layer</h3>
+            <ul>
+                <li>TLS 1.3 termination with FIPS-approved cipher suites</li>
+                <li>Rate limiting: 100 requests/minute per user, 1000/minute per IP</li>
+                <li>Request validation and JSON schema enforcement</li>
+                <li>CORS enforcement and security headers (HSTS, CSP, X-Frame-Options)</li>
+                <li>WAF and DDoS protection at the edge</li>
+            </ul>
+
+            <h3 id="services">3. Application Services Layer</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Responsibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Authentication Service</strong></td>
+                        <td>User authentication, JWT issuance, MFA verification, session management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authorization Service</strong></td>
+                        <td>RBAC/ABAC policy enforcement, permission evaluation, classification checks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Document Service</strong></td>
+                        <td>Document CRUD, version management, search, sharing workflows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encryption Service</strong></td>
+                        <td>AES-256-GCM encryption/decryption, key management, key rotation scheduling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audit Service</strong></td>
+                        <td>Immutable log recording, hash chaining, compliance report generation</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="data">4. Data Persistence Layer</h3>
+            <ul>
+                <li><strong>PostgreSQL</strong> — metadata, users, permissions with Row-Level Security</li>
+                <li><strong>Object Storage</strong> — encrypted document blobs (S3-compatible)</li>
+                <li><strong>Redis</strong> — session cache, JWT blacklist, rate limiting counters</li>
+                <li><strong>Audit Database</strong> — separate, immutable, append-only log store</li>
+            </ul>
+
+            <h3 id="external">5. External Services</h3>
+            <ul>
+                <li>AWS KMS / Azure Key Vault / Google Cloud KMS for master key management</li>
+                <li>TOTP/FIDO2 MFA providers</li>
+                <li>Email/SMS gateways for notifications and alerts</li>
+            </ul>
+
+            <h3 id="infrastructure">6. Infrastructure & Monitoring</h3>
+            <ul>
+                <li>Prometheus for metrics collection</li>
+                <li>ELK Stack (Elasticsearch, Logstash, Kibana) for log aggregation</li>
+                <li>Grafana for operational dashboards</li>
+                <li>Automated backup and disaster recovery</li>
+            </ul>
+
+            <h2 id="related">Related Diagrams</h2>
+            <ul>
+                <li><a href="c4-context.html">C4 Context Diagram</a> — system boundaries and external actors</li>
+                <li><a href="c4-container.html">C4 Container Diagram</a> — runtime containers and communication</li>
+                <li><a href="c4-component.html">C4 Component Diagram</a> — internal components of the Document Service
+                </li>
+                <li><a href="deployment.html">Deployment Architecture</a> — production infrastructure layout</li>
+                <li><a href="network.html">Network Architecture</a> — security zones and firewall rules</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="../overview/use-cases.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Use Cases</div>
+                </a>
+                <a href="c4-context.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">C4 Context Diagram →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#intro">Introduction</a>
+            <a class="toc-link" href="#principles">Principles</a>
+            <a class="toc-link" href="#diagram">Architecture Diagram</a>
+            <a class="toc-link" href="#layers">Architecture Layers</a>
+            <a class="toc-link toc-h3" href="#presentation">Presentation</a>
+            <a class="toc-link toc-h3" href="#gateway">API Gateway</a>
+            <a class="toc-link toc-h3" href="#services">Application Services</a>
+            <a class="toc-link toc-h3" href="#data">Data Persistence</a>
+            <a class="toc-link toc-h3" href="#external">External Services</a>
+            <a class="toc-link toc-h3" href="#infrastructure">Infrastructure</a>
+            <a class="toc-link" href="#related">Related Diagrams</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 Component Diagram - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>C4 Component Diagram</span>
+            </nav>
+            <h1>C4 Component Diagram (Level 3)</h1>
+            <p>This Component Diagram zooms into the <strong>Document Service</strong> container to reveal its internal
+                components, their responsibilities, interactions, and technology choices.</p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">C4 Component Diagram — Document Service</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/C4 Model - Component Diagram (Level 3) - Document Service.svg"
+                        alt="C4 Component Diagram showing internal components of the Document Service: Document Controller, Version Manager, Search Engine, Permission Checker, Storage Adapter, and Encryption Client">
+                </div>
+            </div>
+
+            <h2 id="components">Components</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Responsibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Document Controller</strong></td>
+                        <td>HTTP handler for document API endpoints, request validation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Version Manager</strong></td>
+                        <td>Document version lifecycle, diff computation, restoration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Search Engine</strong></td>
+                        <td>Full-text search across document metadata and content</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Permission Checker</strong></td>
+                        <td>RBAC/ABAC evaluation before document operations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Storage Adapter</strong></td>
+                        <td>Abstraction layer for object storage (S3, Azure Blob, GCS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encryption Client</strong></td>
+                        <td>Internal client to Encryption Service for encrypt/decrypt</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="notes">Security Considerations</h2>
+            <div class="callout callout-danger">
+                <div class="callout-title">🔴 Critical: Permission Checks</div>
+                <p>Every document operation must pass through the Permission Checker before accessing storage. The
+                    Permission Checker calls both RBAC (role verification) and ABAC (policy evaluation) in sequence —
+                    both must pass for the operation to proceed.</p>
+            </div>
+
+            <h2 id="related">Related Diagrams</h2>
+            <ul>
+                <li><a href="c4-container.html">C4 Container Diagram</a> — shows all runtime containers</li>
+                <li><a href="dfd-document.html">Document Management DFD</a> — data flow through document operations</li>
+                <li><a href="../security/rbac.html">RBAC Hierarchy</a> — role levels and permission model</li>
+            </ul>
+            <div class="page-nav">
+                <a href="c4-container.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← C4 Container Diagram</div>
+                </a>
+                <a href="dfd-context.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Context Level DFD →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#components">Components</a>
+            <a class="toc-link" href="#notes">Security Considerations</a>
+            <a class="toc-link" href="#related">Related Diagrams</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

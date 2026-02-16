@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Architecture - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>Deployment Architecture</span>
+            </nav>
+            <h1>Deployment Architecture</h1>
+            <p>The Secure Document Vault is designed for high availability and fault tolerance, deploying across
+                multiple Availability Zones (AZs) in a cloud environment or across physically separate racks in an
+                on-premise data center.</p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">Deployment Architecture - Production Environment</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/Deployment Architecture - Production Environment.svg"
+                        alt="Deployment Architecture Diagram showing Multi-AZ setup with Load Balancers, Application Clusters, and Database Replication">
+                </div>
+            </div>
+
+            <h2 id="components">Infrastructure Components</h2>
+            <ul>
+                <li><strong>Load Balancers</strong> — Multi-AZ Application Load Balancer (ALB) for diverse traffic
+                    distribution.</li>
+                <li><strong>Application Cluster</strong> — Auto-scaling groups of stateless microservices deployed in
+                    private subnets across 3 AZs.</li>
+                <li><strong>Database Cluster</strong> — Primary-Replica PostgreSQL setup with synchronous replication
+                    for zero data loss (RPO=0).</li>
+                <li><strong>Cache Cluster</strong> — Multi-node Redis cluster for high-speed session and rate-limit
+                    data.</li>
+                <li><strong>Bastion Host</strong> — Secured jump box for administrative access, strictly controlled via
+                    security groups.</li>
+            </ul>
+
+            <h2 id="ha">High Availability & DR</h2>
+            <p>The architecture guarantees <strong>99.99% uptime</strong> through:</p>
+            <ul>
+                <li><strong>Redundancy:</strong> N+1 redundancy for all compute and storage components.</li>
+                <li><strong>Isolation:</strong> Failure domain isolation (AZs) prevents localized outages from affecting
+                    the whole system.</li>
+                <li><strong>Auto-Healing:</strong> Automated health checks and replacement of unhealthy instances.</li>
+                <li><strong>Backup:</strong> Automated, encrypted snapshots shipped to a separate region for Disaster
+                    Recovery.</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="dfd-auth.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Auth Service DFD</div>
+                </a>
+                <a href="network.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Network Architecture →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#components">Components</a>
+            <a class="toc-link" href="#ha">High Availability & DR</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

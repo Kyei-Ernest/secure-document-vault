@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 Container Diagram - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>C4 Container Diagram</span>
+            </nav>
+            <h1>C4 Container Diagram (Level 2)</h1>
+            <p>The Container Diagram zooms into the system boundary to show the <strong>runtime containers</strong>
+                (applications, databases, message brokers) that make up the Secure Document Vault. Each container is a
+                separately deployable unit with its own process.</p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">C4 Model — Container Diagram (Level 2)</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/C4 Model - Container Diagram (Level 2).svg"
+                        alt="C4 Container Diagram showing API Gateway, Auth Service, Document Service, Encryption Service, Audit Service, PostgreSQL, Redis, Object Storage, and external systems">
+                </div>
+            </div>
+
+            <h2 id="containers">Containers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Container</th>
+                        <th>Technology</th>
+                        <th>Responsibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>API Gateway</td>
+                        <td>Go / NGINX</td>
+                        <td>TLS termination, routing, rate limiting, request validation</td>
+                    </tr>
+                    <tr>
+                        <td>Auth Service</td>
+                        <td>Go</td>
+                        <td>Authentication, JWT issuance, MFA, session management</td>
+                    </tr>
+                    <tr>
+                        <td>Document Service</td>
+                        <td>Go</td>
+                        <td>Document CRUD, versioning, search, sharing</td>
+                    </tr>
+                    <tr>
+                        <td>Encryption Service</td>
+                        <td>Go</td>
+                        <td>AES-256-GCM encrypt/decrypt, key management</td>
+                    </tr>
+                    <tr>
+                        <td>Audit Service</td>
+                        <td>Go</td>
+                        <td>Immutable logging, hash chaining, compliance reports</td>
+                    </tr>
+                    <tr>
+                        <td>PostgreSQL</td>
+                        <td>PostgreSQL 15+</td>
+                        <td>Metadata, users, permissions with RLS</td>
+                    </tr>
+                    <tr>
+                        <td>Redis</td>
+                        <td>Redis 7+</td>
+                        <td>Session cache, JWT blacklist, rate limit counters</td>
+                    </tr>
+                    <tr>
+                        <td>Object Storage</td>
+                        <td>S3-compatible</td>
+                        <td>Encrypted document blobs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="communication">Communication Patterns</h2>
+            <ul>
+                <li>All inter-service communication uses <strong>mTLS</strong> (mutual TLS)</li>
+                <li>Service-to-database connections use <strong>certificate-based authentication</strong></li>
+                <li>JSON over HTTPS for synchronous request-response</li>
+                <li>Async event publishing for audit log entries</li>
+            </ul>
+
+            <h2 id="related">Related Diagrams</h2>
+            <ul>
+                <li><a href="c4-context.html">C4 Context Diagram</a> — system boundaries and actors</li>
+                <li><a href="c4-component.html">C4 Component Diagram</a> — Document Service internals</li>
+                <li><a href="deployment.html">Deployment Architecture</a> — infrastructure layout</li>
+            </ul>
+            <div class="page-nav">
+                <a href="c4-context.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← C4 Context Diagram</div>
+                </a>
+                <a href="c4-component.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">C4 Component Diagram →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#containers">Containers</a>
+            <a class="toc-link" href="#communication">Communication</a>
+            <a class="toc-link" href="#related">Related Diagrams</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

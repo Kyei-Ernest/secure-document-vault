@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 Context Diagram - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>C4 Context Diagram</span></nav>
+            <h1>C4 Context Diagram (Level 1)</h1>
+            <p>The Context Diagram shows the <strong>highest level of abstraction</strong> — the Secure Document Vault
+                system as a single box, surrounded by its users and the external systems it interacts with. This diagram
+                answers the question: <em>"What does the system do and who uses it?"</em></p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">C4 Model — Context Diagram (Level 1)</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/C4 Model - Context Diagram (Level 1).svg"
+                        alt="C4 Context Diagram showing the Document Vault system surrounded by actors: End Users, System Administrators, Auditors, and external systems like KMS, MFA Provider, and Email Gateway">
+                </div>
+            </div>
+
+            <h2 id="components">Key Elements</h2>
+            <ul>
+                <li><strong>End Users</strong> — government personnel who create, read, share, and manage classified
+                    documents</li>
+                <li><strong>System Administrators</strong> — IT staff responsible for system configuration, user
+                    management, and monitoring</li>
+                <li><strong>Auditors</strong> — compliance personnel who review audit logs and generate compliance
+                    reports</li>
+                <li><strong>Key Management Service (KMS)</strong> — external HSM or cloud KMS for master key storage
+                </li>
+                <li><strong>MFA Provider</strong> — TOTP/FIDO2 authentication service</li>
+                <li><strong>Email/SMS Gateway</strong> — notification delivery service</li>
+            </ul>
+
+            <h2 id="notes">Important Notes</h2>
+            <div class="callout callout-warning">
+                <div class="callout-title">⚠️ Trust Boundaries</div>
+                <p>All external actors communicate with the system through the API Gateway, which enforces TLS 1.3, rate
+                    limiting, and request validation before any request reaches internal services.</p>
+            </div>
+            <ul>
+                <li>All external communication is encrypted with TLS 1.3</li>
+                <li>KMS communication uses mTLS with certificate pinning</li>
+                <li>No direct access to internal services from external actors</li>
+            </ul>
+
+            <h2 id="related">Related Diagrams</h2>
+            <ul>
+                <li><a href="c4-container.html">C4 Container Diagram</a> — zooms into the system to show runtime
+                    containers</li>
+                <li><a href="c4-component.html">C4 Component Diagram</a> — details the Document Service internals</li>
+                <li><a href="overview.html">System Architecture Overview</a> — six-layer architecture description</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="overview.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← System Overview</div>
+                </a>
+                <a href="c4-container.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">C4 Container Diagram →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#components">Key Elements</a>
+            <a class="toc-link" href="#notes">Important Notes</a>
+            <a class="toc-link" href="#related">Related Diagrams</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

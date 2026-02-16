@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Level DFD - SecureVault Docs</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script><script src="../../js/template.js" defer></script>
+</head>
+<body data-section="architecture">
+  <div id="navbar-placeholder"></div>
+  <div class="doc-layout">
+    <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+    <main class="doc-content">
+      <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a href="overview.html">Architecture</a><span class="sep">/</span><span>Context Level DFD</span></nav>
+      <h1>Context Level DFD (Level 0)</h1>
+      <p>The Context Level Data Flow Diagram provides the <strong>highest-level view</strong> of data movement through the Secure Document Vault. It shows the system as a single process, with data flows to and from external entities including users, administrators, external KMS, and audit systems.</p>
+
+      <h2 id="diagram">Diagram</h2>
+      <div class="diagram-container">
+        <div class="diagram-toolbar">
+          <span class="diagram-title">Context Level DFD (Level 0)</span>
+          <div class="diagram-toolbar-actions"><button class="zoom-in">+</button><button class="zoom-out">−</button><button class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button></div>
+        </div>
+        <div class="diagram-viewport">
+          <img src="../../diagrams/dfd/Secure Intelligence Document Vault - Context Level DFD (Level 0).png" alt="Context Level DFD showing data flows between external entities and the Document Vault system">
+        </div>
+      </div>
+
+      <h2 id="entities">External Entities</h2>
+      <ul>
+        <li><strong>End Users</strong> — submit documents, retrieve encrypted files, manage permissions</li>
+        <li><strong>Administrators</strong> — configure system settings, manage users and roles</li>
+        <li><strong>Key Management Service</strong> — provides master keys for envelope encryption</li>
+        <li><strong>Audit System</strong> — receives immutable log entries for compliance</li>
+        <li><strong>External Auth</strong> — MFA verification through TOTP/FIDO2 providers</li>
+      </ul>
+
+      <h2 id="flows">Key Data Flows</h2>
+      <ul>
+        <li>Document upload → encryption → encrypted storage</li>
+        <li>Authentication request → credential verification → JWT issuance</li>
+        <li>Document retrieval → authorization check → decryption → delivery</li>
+        <li>All operations → audit log generation → immutable storage</li>
+      </ul>
+
+      <h2 id="related">Related Diagrams</h2>
+      <ul>
+        <li><a href="dfd-level1.html">Level 1 DFD</a> — decomposes the single process into major subsystems</li>
+        <li><a href="c4-context.html">C4 Context Diagram</a> — similar scope with C4 notation</li>
+      </ul>
+      <div class="page-nav">
+        <a href="c4-component.html" class="page-nav-link"><div class="page-nav-dir">Previous</div><div class="page-nav-title">← C4 Component Diagram</div></a>
+        <a href="dfd-level1.html" class="page-nav-link next"><div class="page-nav-dir">Next</div><div class="page-nav-title">Level 1 DFD →</div></a>
+      </div>
+    </main>
+    <aside class="doc-toc">
+      <div class="doc-toc-title">On This Page</div>
+      <a class="toc-link" href="#diagram">Diagram</a>
+      <a class="toc-link" href="#entities">External Entities</a>
+      <a class="toc-link" href="#flows">Key Data Flows</a>
+      <a class="toc-link" href="#related">Related Diagrams</a>
+    </aside>
+  </div>
+  <div id="footer-placeholder"></div>
+</body>
+</html>

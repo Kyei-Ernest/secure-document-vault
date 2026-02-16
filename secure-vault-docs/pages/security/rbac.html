@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC Hierarchy - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="security">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Security</a><span class="sep">/</span><span>RBAC Hierarchy</span></nav>
+            <h1>Role-Based Access Control (RBAC) Hierarchy</h1>
+            <p>The system enforces a strict <strong>7-level hierarchical RBAC model</strong>. Permissions serve as a
+                baseline for access; higher-level roles inherit permissions from lower-level roles where appropriate,
+                but specialized roles (like Auditor) are intentionally segregated.</p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">Access Control Model - RBAC Hierarchy</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/access-control/Access Control Model - RBAC Hierarchy.svg"
+                        alt="RBAC Hierarchy Diagram showing SuperAdmin, Admin, Manager, User, ReadOnly, Auditor, and SystemAccount roles">
+                </div>
+            </div>
+
+            <h2 id="roles">Role Definitions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role Level</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level 1</td>
+                        <td><strong>SuperAdmin</strong></td>
+                        <td>Full system control, critical config, emergency override.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 2</td>
+                        <td><strong>Admin</strong></td>
+                        <td>User management, system configuration, routine ops.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 3</td>
+                        <td><strong>Manager</strong></td>
+                        <td>Departmental oversight, approval workflows, delegation.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 4</td>
+                        <td><strong>User</strong></td>
+                        <td>Standard read/write access to assigned documents.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 5</td>
+                        <td><strong>ReadOnly</strong></td>
+                        <td>View-only access to assigned documents.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 6</td>
+                        <td><strong>Auditor</strong></td>
+                        <td>Read-only access to audit logs and compliance reports only.</td>
+                    </tr>
+                    <tr>
+                        <td>Level 7</td>
+                        <td><strong>SystemAccount</strong></td>
+                        <td>Service-to-service authentication (automated).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="inheritance">Inheritance Model</h2>
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ Inheritance Rules</div>
+                <p>Roles inherit permissions from the level below them in the operational chain (User → Admin). The
+                    <strong>Auditor</strong> role is outside this chain to ensure separation of duties — Auditors cannot
+                    modify system data, and Admins cannot modify audit logs.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="overview.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Security Overview</div>
+                </a>
+                <a href="permissions.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Permission Matrix →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#roles">Role Definitions</a>
+            <a class="toc-link" href="#inheritance">Inheritance Model</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

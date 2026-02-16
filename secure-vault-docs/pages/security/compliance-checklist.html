@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance Checklist - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+    <style>
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            background: var(--bg-secondary);
+        }
+
+        .checklist-checkbox {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
+        }
+
+        .checklist-content h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+        }
+
+        .checklist-content p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .status-badge {
+            margin-left: auto;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .status-implemented {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-partial {
+            background: #fef3c7;
+            color: #92400e;
+        }
+    </style>
+</head>
+
+<body data-section="security">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Security</a><span class="sep">/</span><span>Compliance Checklist</span></nav>
+            <h1>NIST 800-53 Compliance Checklist</h1>
+            <p>This interactive checklist helps track the implementation status of key NIST SP 800-53 controls within
+                the Secure Intelligence Document Vault deployment.</p>
+
+            <h2 id="ac">Access Control (AC)</h2>
+            <div class="checklist">
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AC-2 Account Management</h4>
+                        <p>Automated system for managing user accounts, including creation, activation, modification,
+                            and termination.</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AC-3 Access Enforcement</h4>
+                        <p>The system enforces approved authorizations for logical access to information and system
+                            resources (RBAC + ABAC).</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AC-6 Least Privilege</h4>
+                        <p>Users are granted the most restrictive set of privileges needed for the performance of
+                            authorized tasks.</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+            </div>
+
+            <h2 id="au">Audit & Accountability (AU)</h2>
+            <div class="checklist">
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AU-2 Audit Events</h4>
+                        <p>The system generates audit records for all security-relevant events, including
+                            authentication, access, and changes.</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AU-6 Audit Review, Analysis, and Reporting</h4>
+                        <p>Automated tools for audit record review, analysis, and reporting are integrated into the
+                            Admin Portal.</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>AU-9 Protection of Audit Information</h4>
+                        <p>Audit information is protected from unauthorized access, modification, and deletion (WORM
+                            storage).</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+            </div>
+
+            <h2 id="sc">System & Communications Protection (SC)</h2>
+            <div class="checklist">
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>SC-8 Transmission Confidentiality and Integrity</h4>
+                        <p>All data in transit is protected using TLS 1.3 with strong cipher suites.</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked disabled>
+                    <div class="checklist-content">
+                        <h4>SC-28 Protection of Information at Rest</h4>
+                        <p>Data at rest is protected using cryptographic mechanisms (AES-256-GCM).</p>
+                    </div>
+                    <span class="status-badge status-implemented">Implemented</span>
+                </label>
+            </div>
+
+            <div class="page-nav">
+                <a href="key-management.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Key Management</div>
+                </a>
+                <a href="../research/nist-800-53.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">NIST 800-53 Research →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#ac">Access Control</a>
+            <a class="toc-link" href="#au">Audit & Accountability</a>
+            <a class="toc-link" href="#sc">Sys & Comm Protection</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

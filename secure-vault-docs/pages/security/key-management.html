@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Management - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="security">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Security</a><span class="sep">/</span><span>Key Management</span></nav>
+            <h1>Key Management Lifecycle</h1>
+            <p>Secure key management is the foundation of our cryptographic security. We employ automated key rotation,
+                strict separation of duties, and HSM-backed protection for all master keys.</p>
+
+            <h2 id="hierarchy">Key Hierarchy</h2>
+            <ol>
+                <li><strong>Master Key (MK):</strong> The root of trust, stored exclusively in a FIPS 140-2 Level 3
+                    Hardware Security Module (HSM). Never leaves the HSM boundary.</li>
+                <li><strong>Key Encryption Key (KEK):</strong> Used to encrypt Data Encryption Keys. Rotated every 90
+                    days.</li>
+                <li><strong>Data Encryption Key (DEK):</strong> Unique per document version. Encrypts the actual data
+                    blob.</li>
+            </ol>
+
+            <h2 id="rotation">Automated Key Rotation</h2>
+            <p>The system enforces automated rotation policies to limit the potential impact of a compromised key.</p>
+            <ul>
+                <li><strong>Master Keys:</strong> Rotated annually (re-encrypted KEKs).</li>
+                <li><strong>KEKs:</strong> Rotated every 90 days (re-encrypted DEKs).</li>
+                <li><strong>DEKs:</strong> Re-generated whenever a document is updated (new version).</li>
+            </ul>
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ Zero Downtime Rotation</div>
+                <p>Key rotation is performed online without service interruption. Old keys are retained for decryption
+                    of historical data but are deprecated for new encryption operations.</p>
+            </div>
+
+            <h2 id="storage">Secure Storage</h2>
+            <p>Keys are never stored in plaintext on disk.</p>
+            <ul>
+                <li><strong>HSM:</strong> AWS KMS / Azure Key Vault / Google Cloud KMS for cloud deployments.</li>
+                <li><strong>On-Premise:</strong> Thales Luna / YubiHSM support for on-prem deployments.</li>
+                <li><strong>Memory Protection:</strong> Keys in memory are wiped (zeroed) immediately after use to
+                    prevent leakage via core dumps or swap.</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="encryption.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Encryption & Cryptography</div>
+                </a>
+                <a href="compliance-checklist.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Compliance Checklist →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#hierarchy">Key Hierarchy</a>
+            <a class="toc-link" href="#rotation">Key Rotation</a>
+            <a class="toc-link" href="#storage">Secure Storage</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

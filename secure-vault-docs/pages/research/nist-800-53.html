@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIST SP 800-53 Rev. 5 - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="research">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span
+                    class="sep">/</span><span>Research</span><span class="sep">/</span><span>NIST SP 800-53</span></nav>
+            <h1>NIST SP 800-53 Rev. 5 Compliance Strategy</h1>
+            <p>NIST Special Publication 800-53 Revision 5, <em>Security and Privacy Controls for Information Systems and
+                    Organizations</em>, provides a catalog of security and privacy controls for all U.S. federal
+                information systems except those related to national security. The Secure Intelligence Document Vault is
+                designed to implement high-impact baseline controls.</p>
+
+            <h2 id="families">Key Control Families</h2>
+
+            <h3>AC - Access Control</h3>
+            <p>The system enforces strict access control policies (AC-3) using a hybrid RBAC/ABAC model. Least Privilege
+                (AC-6) is the default posture. Automated account management (AC-2) ensures timely provisioning and
+                deprovisioning.</p>
+
+            <h3>AU - Audit and Accountability</h3>
+            <p>The Audit Service ensures that the system is capable of auditing significant events (AU-2). Audit records
+                contain information that establishes what type of event occurred, when the event occurred, where the
+                event occurred, the source of the event, the outcome of the event, and the identity of any individuals
+                or subjects associated with the event (AU-3).</p>
+
+            <h3>IA - Identification and Authentication</h3>
+            <p>Users are uniquely identified and authenticated (IA-2) using multi-factor authentication (IA-2(1)) before
+                accessing the system. The system supports FIDO2 hardware tokens for phish-resistant authentication.</p>
+
+            <h3>SC - System and Communications Protection</h3>
+            <p>The system separates user functionality from system management functionality (SC-2). All information at
+                rest is protected (SC-28) using FIPS-validated AES-256-GCM. All information in transit is protected
+                (SC-8) using TLS 1.3.</p>
+
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ Continuous Monitoring</div>
+                <p>Compliance is not a one-time event. The system feeds logs to SIEM systems to support continuous
+                    monitoring (CA-7) of security controls.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="../security/compliance-checklist.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Compliance Checklist</div>
+                </a>
+                <a href="nist-800-171.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">NIST SP 800-171 →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#families">Control Families</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

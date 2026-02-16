@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption & Cryptography - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="security">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Security</a><span class="sep">/</span><span>Encryption</span></nav>
+            <h1>Encryption & Cryptography</h1>
+            <p>The Secure Intelligence Document Vault employs a defense-in-depth cryptographic strategy to ensure the
+                confidentiality and integrity of all stored data. We strictly adhere to FIPS 140-3 standards for all
+                cryptographic operations.</p>
+
+            <h2 id="at-rest">Data at Rest Encryption</h2>
+            <p>All sensitive data stored on disk is encrypted using <strong>AES-256-GCM</strong> (Galois/Counter Mode).
+                This provides both confidentiality (data is unreadable without the key) and integrity (tampering is
+                detected).</p>
+
+            <div class="callout callout-success">
+                <div class="callout-title">✅ FIPS Validated</div>
+                <p>We use the FIPS-validated BoringCrypto module within Go for all cryptographic primitives.</p>
+            </div>
+
+            <h3>Envelope Encryption Strategy</h3>
+            <p>To support massive scale and secure key management, we use envelope encryption:</p>
+            <ol>
+                <li><strong>Data Encryption Key (DEK):</strong> A unique 256-bit AES key is generated for every document
+                    version. This key encrypts the actual file content.</li>
+                <li><strong>Key Encryption Key (KEK):</strong> A master key stored in a Hardware Security Module (HSM)
+                    encrypts the DEK.</li>
+                <li><strong>Storage:</strong> The encrypted content and the encrypted DEK are stored together. The
+                    plaintext DEK is never stored on disk.</li>
+            </ol>
+
+            <h2 id="in-transit">Data in Transit Encryption</h2>
+            <p>All network communication is secured using <strong>TLS 1.3</strong>.</p>
+            <ul>
+                <li><strong>Protocol:</strong> TLS 1.3 (only)</li>
+                <li><strong>Cipher Suites:</strong> Restricted to PFS (Perfect Forward Secrecy) suites:
+                    <ul>
+                        <li><code>TLS_AES_128_GCM_SHA256</code></li>
+                        <li><code>TLS_AES_256_GCM_SHA384</code></li>
+                        <li><code>TLS_CHACHA20_POLY1305_SHA256</code></li>
+                    </ul>
+                </li>
+                <li><strong>Certificates:</strong> RSA-4096 or ECDSA P-384 signed by internal CA.</li>
+                <li><strong>mTLS:</strong> Required for all service-to-service communication.</li>
+            </ul>
+
+            <h2 id="algorithms">Approved Algorithms</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Algorithm</th>
+                        <th>Key Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Symmetric Encryption</td>
+                        <td>AES-GCM</td>
+                        <td>256-bit</td>
+                    </tr>
+                    <tr>
+                        <td>Hashing</td>
+                        <td>SHA-256 / SHA-384</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Digital Signatures</td>
+                        <td>ECDSA / RSA-PSS</td>
+                        <td>P-384 / 4096-bit</td>
+                    </tr>
+                    <tr>
+                        <td>Key Exchange</td>
+                        <td>ECDHE</td>
+                        <td>P-256 / P-384</td>
+                    </tr>
+                    <tr>
+                        <td>Password Hashing</td>
+                        <td>Argon2id</td>
+                        <td>Salt: 16 bytes, Time: 3, Memory: 64MB</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="page-nav">
+                <a href="emergency-override.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Emergency Override</div>
+                </a>
+                <a href="key-management.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Key Management →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#at-rest">Data at Rest</a>
+            <a class="toc-link" href="#in-transit">Data in Transit</a>
+            <a class="toc-link" href="#algorithms">Approved Algorithms</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

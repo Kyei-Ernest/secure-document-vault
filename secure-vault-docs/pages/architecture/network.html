@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Architecture - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>Network Architecture</span>
+            </nav>
+            <h1>Network Architecture</h1>
+            <p>The network architecture implements strictly defined <strong>security zones</strong> to control traffic
+                flow and isolate sensitive components. It adheres to the principle of least privilege at the network
+                layer.</p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">Network Architecture - Security Zones & Firewall Rules</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/Network Architecture - Security Zones & Firewall Rules.svg"
+                        alt="Network Architecture Diagram showing Public, DMZ, Application, and Data zones with firewall rules">
+                </div>
+            </div>
+
+            <h2 id="zones">Security Zones</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zone</th>
+                        <th>Access</th>
+                        <th>Components</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Public Zone</strong></td>
+                        <td>Internet facing</td>
+                        <td>Load Balancers, WAF, NAT Gateways</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DMZ</strong></td>
+                        <td>Restricted inbound</td>
+                        <td>Bastion Hosts, VPN Terminators</td>
+                    </tr>
+                    <tr>
+                        <td><strong>App Zone</strong></td>
+                        <td>Internal only</td>
+                        <td>Microservices (Auth, Doc, Audit, Encrypt)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Zone</strong></td>
+                        <td>Strictly isolated</td>
+                        <td>PostgreSQL, Redis, KMS Interface</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="rules">Firewall Rules</h2>
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ Default Deny</div>
+                <p>All network traffic is denied by default. Allow rules are explicitly defined for required
+                    communication paths only.</p>
+            </div>
+            <ul>
+                <li><strong>Ingress:</strong> HTTPS (443) only from WAF to Load Balancers.</li>
+                <li><strong>App-to-DB:</strong> Port 5432 allowed only from App Zone to Data Zone.</li>
+                <li><strong>Egress:</strong> Restricted to specific FQDNs (e.g., KMS endpoints, SMTP) via Egress Filter.
+                </li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="deployment.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Deployment Architecture</div>
+                </a>
+                <a href="tech-stack.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Technology Stack →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#zones">Security Zones</a>
+            <a class="toc-link" href="#rules">Firewall Rules</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

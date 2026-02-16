@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Overview - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="security">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span
+                    class="sep">/</span><span>Security</span><span class="sep">/</span><span>Overview</span></nav>
+            <h1>Security Overview</h1>
+            <p>The security architecture of the Secure Intelligence Document Vault is built on <strong>Zero
+                    Trust</strong> principles, assuming that no user or network segment is inherently trusted. Security
+                controls are layered (Defense in Depth) to ensure that the failure of any single control does not result
+                in a system compromise.</p>
+
+            <h2 id="principles">Core Security Principles</h2>
+            <div class="features-grid" style="margin-top:2rem">
+                <div class="feature-card">
+                    <div class="feature-icon blue">🛡</div>
+                    <h4>Verify Explicitly</h4>
+                    <p>Always authenticate and authorize based on all available data points, including user identity,
+                        location, device health, service or workload, and data classification.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">🛑</div>
+                    <h4>Use Least Privilege</h4>
+                    <p>Limit user access with just-in-time and just-enough-access (JIT/JEA), risk-based adaptive
+                        policies, and data protection to help secure both data and productivity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon amber">👁</div>
+                    <h4>Assume Breach</h4>
+                    <p>Minimize blast radius and segment access. Verify end-to-end encryption and use analytics to get
+                        visibility, drive threat detection, and improve defenses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon green">🔒</div>
+                    <h4>Defense in Depth</h4>
+                    <p>Multiple independent layers of security controls (WAF, TLS, RBAC, RLS, Encryption) protecting
+                        data assets.</p>
+                </div>
+            </div>
+
+            <h2 id="model">STRIDE Threat Model</h2>
+            <p>The system's security design is informed by a comprehensive STRIDE threat modeling exercise that
+                identified and mitigated 113 distinct threats.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Focus</th>
+                        <th>Key Mitigation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Spoofing</strong></td>
+                        <td>Identity</td>
+                        <td>Strong MFA (TOTP/FIDO2), Mutual TLS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tampering</strong></td>
+                        <td>Integrity</td>
+                        <td>HMAC signatures, Immutable audit logs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repudiation</strong></td>
+                        <td>Non-deniability</td>
+                        <td>Cryptographically signed audit trails</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Information Disclosure</strong></td>
+                        <td>Confidentiality</td>
+                        <td>AES-256-GCM encryption, TLS 1.3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Denial of Service</strong></td>
+                        <td>Availability</td>
+                        <td>Rate limiting, Auto-scaling, CDNs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Elevation of Privilege</strong></td>
+                        <td>Authorization</td>
+                        <td>Strict RBAC/ABAC enforcement</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="crypto">Cryptographic Standards</h2>
+            <p>We adhere strictly to <strong>FIPS 140-3</strong> requirements. No custom cryptography is used. All
+                cryptographic operations utilize FIPS-validated modules.</p>
+            <ul>
+                <li><strong>Data at Rest:</strong> AES-256-GCM (Authenticated Encryption)</li>
+                <li><strong>Data in Transit:</strong> TLS 1.3 only (Sweet32/POODLE mitigation)</li>
+                <li><strong>Key Exchange:</strong> ECDHE (P-256, P-384 curves)</li>
+                <li><strong>Hashing:</strong> SHA-256, SHA-384, Argon2id (for passwords)</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="../architecture/tech-stack.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Technology Stack</div>
+                </a>
+                <a href="rbac.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">RBAC Hierarchy →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#principles">Core Principles</a>
+            <a class="toc-link" href="#model">STRIDE Threat Model</a>
+            <a class="toc-link" href="#crypto">Cryptographic Standards</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

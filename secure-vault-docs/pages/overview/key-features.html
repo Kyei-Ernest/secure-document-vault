@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Features - SecureVault Docs</title>
+    <meta name="description" content="Key features of the Secure Intelligence Document Vault">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="overview">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="executive-summary.html">Overview</a><span class="sep">/</span><span>Key Features</span></nav>
+            <h1>Key Features</h1>
+            <p>The Secure Intelligence Document Vault provides a comprehensive suite of security, compliance, and
+                document management capabilities designed for government and enterprise environments.</p>
+
+            <h2 id="encryption">Military-Grade Encryption</h2>
+            <p>All documents are encrypted using <strong>AES-256-GCM</strong> (Galois/Counter Mode), providing both
+                confidentiality and integrity through authenticated encryption. The system employs <strong>envelope
+                    encryption</strong>, where each document is encrypted with a unique Data Encryption Key (DEK), and
+                each DEK is protected by a master key stored in an HSM.</p>
+            <ul>
+                <li><strong>Algorithm:</strong> AES-256-GCM (FIPS 197 certified)</li>
+                <li><strong>Key Size:</strong> 256 bits (32 bytes) with 12-byte nonce</li>
+                <li><strong>Authentication Tag:</strong> 128-bit GCM tag for integrity verification</li>
+                <li><strong>Key Generation:</strong> CSPRNG with FIPS-validated random number generator</li>
+                <li><strong>Data in Transit:</strong> TLS 1.3 with Perfect Forward Secrecy</li>
+            </ul>
+
+            <h2 id="rbac">Role-Based Access Control (RBAC)</h2>
+            <p>A hierarchical RBAC system with 7 distinct role levels provides granular access control. Combined with an
+                Attribute-Based Access Control (ABAC) policy engine, the system enforces context-aware authorization
+                decisions based on user attributes, resource classification, and environmental conditions.</p>
+            <ul>
+                <li><strong>7 Role Levels:</strong> SuperAdmin → Admin → Manager → User → ReadOnly → Auditor →
+                    SystemAccount</li>
+                <li><strong>ABAC Integration:</strong> Policy-based decisions considering time, location, device, and
+                    clearance</li>
+                <li><strong>Document Classification:</strong> 5 tiers from UNCLASSIFIED to TOP SECRET with
+                    compartmentalization</li>
+                <li><strong>Row-Level Security:</strong> PostgreSQL RLS enforces access at the database layer</li>
+            </ul>
+
+            <h2 id="audit">Immutable Audit Logs</h2>
+            <p>Every operation in the system generates a tamper-proof audit record. Logs are cryptographically chained
+                using hash pointers, creating a verifiable chain of custody for every document interaction. The audit
+                database is physically separated from application data.</p>
+            <ul>
+                <li><strong>Immutability:</strong> Write-once, read-many (WORM) storage architecture</li>
+                <li><strong>Integrity:</strong> SHA-256 hash chaining with Merkle tree verification</li>
+                <li><strong>Comprehensiveness:</strong> Authentication, document ops, permission changes, system events
+                </li>
+                <li><strong>Retention:</strong> Configurable 7+ year retention with automated archival</li>
+                <li><strong>Export:</strong> JSON, CSV, PDF formats for compliance reporting</li>
+            </ul>
+
+            <h2 id="versioning">Document Versioning</h2>
+            <p>Full version history with content-addressable storage enables point-in-time recovery and compliance
+                auditing. Every version is independently encrypted and maintains its own integrity checksum.</p>
+            <ul>
+                <li>Complete version history with SHA-256 checksums</li>
+                <li>Version comparison and diff viewing</li>
+                <li>Point-in-time restore from any previous version</li>
+                <li>Version locking to prevent concurrent modifications</li>
+                <li>Per-version encryption with separate key tracking</li>
+            </ul>
+
+            <h2 id="mfa">Multi-Factor Authentication</h2>
+            <p>MFA is <strong>mandatory</strong> for all users, supporting multiple authentication factors including
+                knowledge (password), possession (TOTP/hardware token), and optional biometric verification.</p>
+            <ul>
+                <li><strong>Password:</strong> Argon2id hashing with unique salt and application pepper</li>
+                <li><strong>TOTP:</strong> RFC 6238 time-based one-time passwords (30-second window)</li>
+                <li><strong>FIDO2/WebAuthn:</strong> Hardware security keys for phishing-resistant authentication</li>
+                <li><strong>Session Management:</strong> Short-lived JWTs (15 min) with secure token rotation</li>
+            </ul>
+
+            <h2 id="zero-trust">Zero Trust Architecture</h2>
+            <p>Every component operates on three core principles: <em>verify explicitly</em>, <em>use least
+                    privilege</em>, and <em>assume breach</em>. No implicit trust is granted based on network location,
+                and all service-to-service communication is authenticated and encrypted.</p>
+
+            <h2 id="key-rotation">Automated Key Rotation</h2>
+            <p>Encryption keys automatically rotate on a configurable schedule (default: 90 days) or after a threshold
+                number of encryption operations. The system maintains a key versioning ring, ensuring seamless
+                decryption of historical documents while using the latest key for new encryptions.</p>
+
+            <h2 id="compliance-ready">Compliance-Ready</h2>
+            <p>The system ships with pre-mapped controls for major compliance frameworks, an interactive compliance
+                checklist, and automated reporting capabilities to streamline audit preparation and reduce the time and
+                cost of certification.</p>
+
+            <div class="page-nav">
+                <a href="executive-summary.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Executive Summary</div>
+                </a>
+                <a href="compliance.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Compliance & Standards →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#encryption">Military-Grade Encryption</a>
+            <a class="toc-link" href="#rbac">RBAC</a>
+            <a class="toc-link" href="#audit">Audit Logs</a>
+            <a class="toc-link" href="#versioning">Versioning</a>
+            <a class="toc-link" href="#mfa">MFA</a>
+            <a class="toc-link" href="#zero-trust">Zero Trust</a>
+            <a class="toc-link" href="#key-rotation">Key Rotation</a>
+            <a class="toc-link" href="#compliance-ready">Compliance-Ready</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

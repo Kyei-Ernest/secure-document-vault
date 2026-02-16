@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Intelligence Document Vault - Government-Grade Document Management</title>
+  <meta name="description" content="NIST-compliant, FIPS 140-3 certified document vault with AES-256-GCM encryption, RBAC, and immutable audit logs for government and enterprise.">
+  <meta name="keywords" content="document vault, secure document management, NIST compliance, FIPS 140-3, government security, AES-256, encryption">
+  <meta property="og:title" content="Secure Intelligence Document Vault">
+  <meta property="og:description" content="Government-grade document management system with military-level encryption">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="shield-icon" aria-hidden="true">🛡</span>
+        SecureVault Docs
+      </a>
+      <ul class="navbar-menu" role="menubar">
+        <li><a href="pages/overview/executive-summary.html">Overview</a></li>
+        <li><a href="pages/architecture/overview.html">Architecture</a></li>
+        <li><a href="pages/security/overview.html">Security</a></li>
+        <li><a href="pages/research/nist-800-53.html">Research</a></li>
+        <li><a href="pages/implementation/roadmap.html">Implementation</a></li>
+        <li><a href="pages/operations/installation.html">Operations</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="btn-icon search-trigger" onclick="openSearch()" aria-label="Search documentation">
+          🔍 <span>Search</span> <kbd>⌘K</kbd>
+        </button>
+        <button class="btn-icon" onclick="toggleTheme()" aria-label="Toggle dark mode" id="themeToggle">🌙</button>
+        <button class="btn-icon mobile-menu-toggle" onclick="openMobileNav()" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+    <div class="search-dialog" role="dialog" aria-label="Search documentation">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search documentation..." oninput="handleSearch(this.value)" autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults">
+        <div class="search-empty">Type to search documentation...</div>
+      </div>
+      <div class="search-footer">
+        <span>↵ to select</span>
+        <span>esc to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+    <div style="margin-top:2.5rem">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Overview</div>
+        <a class="sidebar-link" href="pages/overview/executive-summary.html">Executive Summary</a>
+        <a class="sidebar-link" href="pages/overview/key-features.html">Key Features</a>
+        <a class="sidebar-link" href="pages/overview/compliance.html">Compliance & Standards</a>
+        <a class="sidebar-link" href="pages/overview/use-cases.html">Use Cases</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Architecture</div>
+        <a class="sidebar-link" href="pages/architecture/overview.html">System Overview</a>
+        <a class="sidebar-link" href="pages/architecture/c4-context.html">C4 Context Diagram</a>
+        <a class="sidebar-link" href="pages/architecture/c4-container.html">C4 Container Diagram</a>
+        <a class="sidebar-link" href="pages/architecture/c4-component.html">C4 Component Diagram</a>
+        <a class="sidebar-link" href="pages/architecture/deployment.html">Deployment Architecture</a>
+        <a class="sidebar-link" href="pages/architecture/network.html">Network Architecture</a>
+        <a class="sidebar-link" href="pages/architecture/tech-stack.html">Technology Stack</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Security</div>
+        <a class="sidebar-link" href="pages/security/overview.html">Security Overview</a>
+        <a class="sidebar-link" href="pages/security/rbac.html">RBAC Hierarchy</a>
+        <a class="sidebar-link" href="pages/security/encryption.html">Encryption</a>
+        <a class="sidebar-link" href="pages/security/key-management.html">Key Management</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        NIST SP 800-171 Compliant • Production Ready
+      </div>
+      <h1>Secure Intelligence <span class="gradient-text">Document Vault</span></h1>
+      <p class="hero-subtitle">Government-grade document management system with military-level AES-256-GCM encryption, comprehensive RBAC, immutable audit trails, and full FIPS 140-3 compliance.</p>
+      <div class="hero-actions">
+        <a href="pages/architecture/overview.html" class="btn btn-primary">View Architecture →</a>
+        <a href="pages/security/overview.html" class="btn btn-secondary">Security Overview</a>
+        <a href="pages/overview/executive-summary.html" class="btn btn-secondary">Read Documentation</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-value">FIPS 140-3</div>
+          <div class="stat-label">Compliant</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">AES-256-GCM</div>
+          <div class="stat-label">Encryption</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">800-171</div>
+          <div class="stat-label">NIST Certified</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">99.99%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="overline">Capabilities</span>
+        <h2>Enterprise-Grade Security Features</h2>
+        <p>Built from the ground up with zero-trust architecture principles and defense-in-depth security design.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon blue">🔐</div>
+          <h4>Military-Grade Encryption</h4>
+          <p>AES-256-GCM authenticated encryption with automatic key rotation and envelope encryption via HSM.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon green">👥</div>
+          <h4>Role-Based Access Control</h4>
+          <p>7-level RBAC hierarchy with ABAC policy engine, document classification, and least-privilege enforcement.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon amber">📋</div>
+          <h4>Immutable Audit Logs</h4>
+          <p>Cryptographically-chained, tamper-proof audit trail with Merkle tree verification and WORM compliance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon blue">📄</div>
+          <h4>Document Versioning</h4>
+          <p>Full version history with content-addressable storage, diff comparison, and point-in-time restore.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon red">🔑</div>
+          <h4>Multi-Factor Authentication</h4>
+          <p>TOTP, FIDO2/WebAuthn hardware tokens, and biometric authentication with phishing resistance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon green">🏗️</div>
+          <h4>Zero Trust Architecture</h4>
+          <p>Verify explicitly, use least privilege, assume breach — implemented across every service boundary.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon amber">🔄</div>
+          <h4>Automated Key Rotation</h4>
+          <p>FIPS-validated key management with automatic 90-day rotation, key versioning, and secure zeroization.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon blue">✅</div>
+          <h4>Compliance-Ready</h4>
+          <p>Pre-mapped to NIST 800-53, 800-171/172, FIPS 140-3, SOC 2 Type II, and ISO 27001 controls.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="overline">Compliance</span>
+        <h2>Standards & Certifications</h2>
+        <p>Designed to meet or exceed the most demanding government and enterprise security standards.</p>
+      </div>
+      <div class="badges-row">
+        <div class="badge-card">
+          <div class="badge-icon">N</div>
+          <h5>NIST SP 800-53</h5>
+          <p>Security Controls</p>
+        </div>
+        <div class="badge-card">
+          <div class="badge-icon">N</div>
+          <h5>NIST SP 800-171</h5>
+          <p>CUI Protection</p>
+        </div>
+        <div class="badge-card">
+          <div class="badge-icon">F</div>
+          <h5>FIPS 140-3</h5>
+          <p>Crypto Validation</p>
+        </div>
+        <div class="badge-card">
+          <div class="badge-icon">S</div>
+          <h5>SOC 2 Type II</h5>
+          <p>Service Controls</p>
+        </div>
+        <div class="badge-card">
+          <div class="badge-icon">I</div>
+          <h5>ISO 27001</h5>
+          <p>InfoSec Management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="overline">Architecture</span>
+        <h2>Defense-in-Depth Design</h2>
+        <p>A modern microservices architecture with six security layers from edge to data.</p>
+      </div>
+      <div class="arch-preview">
+        <div class="arch-preview-img">
+          <img src="diagrams/architecture/Secure Intelligence Document Vault - High-Level System Architecture.svg" alt="System Architecture Overview — showing 6 layers: Presentation, API Gateway, Application Services, Data Persistence, External Services, and Infrastructure">
+        </div>
+        <div class="arch-preview-text">
+          <h3>Six-Layer Security Architecture</h3>
+          <p>Every request passes through multiple security checkpoints before reaching document data. The system implements true defense-in-depth with independent validation at each layer.</p>
+          <ul>
+            <li>TLS 1.3 termination and WAF at the edge</li>
+            <li>JWT validation and rate limiting at the API Gateway</li>
+            <li>RBAC + ABAC enforcement at the service layer</li>
+            <li>Row-Level Security policies in PostgreSQL</li>
+            <li>AES-256-GCM encryption at-rest for all documents</li>
+            <li>Separate, immutable audit database for compliance</li>
+          </ul>
+          <a href="pages/architecture/overview.html" class="btn btn-blue" style="margin-top:1rem">Explore Architecture →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">22+</div>
+          <div class="stat-text">Detailed Diagrams</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">113</div>
+          <div class="stat-text">Threats Identified & Mitigated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-text">STRIDE Categories Covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-text">Security Layers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-text">Classification Levels</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Explore?</h2>
+      <p>Dive into the comprehensive documentation covering architecture, security, compliance, and operations.</p>
+      <div class="cta-buttons">
+        <a href="pages/overview/executive-summary.html" class="btn btn-primary">Read Documentation</a>
+        <a href="pages/security/overview.html" class="btn btn-secondary">Security Deep-Dive</a>
+        <a href="pages/architecture/overview.html" class="btn btn-secondary">Architecture Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>🛡 SecureVault Documentation</h4>
+          <p>Comprehensive technical documentation for the Secure Intelligence Document Vault — a government-grade, NIST-compliant document management system.</p>
+        </div>
+        <div class="footer-links">
+          <h5>Documentation</h5>
+          <ul>
+            <li><a href="pages/overview/executive-summary.html">Executive Summary</a></li>
+            <li><a href="pages/architecture/overview.html">Architecture</a></li>
+            <li><a href="pages/security/overview.html">Security</a></li>
+            <li><a href="pages/implementation/roadmap.html">Implementation</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="pages/appendix/glossary.html">Glossary</a></li>
+            <li><a href="pages/appendix/faq.html">FAQ</a></li>
+            <li><a href="pages/appendix/references.html">References</a></li>
+            <li><a href="pages/research/nist-800-53.html">NIST Standards</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Operations</h5>
+          <ul>
+            <li><a href="pages/operations/installation.html">Installation</a></li>
+            <li><a href="pages/operations/configuration.html">Configuration</a></li>
+            <li><a href="pages/operations/monitoring.html">Monitoring</a></li>
+            <li><a href="pages/operations/backup.html">Backup & Recovery</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Secure Intelligence Document Vault. All rights reserved.</span>
+        <span>Classification: UNCLASSIFIED // FOR OFFICIAL USE ONLY</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

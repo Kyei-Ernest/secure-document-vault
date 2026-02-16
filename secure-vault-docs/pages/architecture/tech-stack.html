@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Stack - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="architecture">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="overview.html">Architecture</a><span class="sep">/</span><span>Technology Stack</span></nav>
+            <h1>Technology Stack</h1>
+            <p>The technology stack is chosen for <strong>security, performance, and auditability</strong>. We
+                prioritize memory-safe languages, battle-tested cryptographic libraries, and ACID-compliant data stores.
+            </p>
+
+            <h2 id="diagram">Diagram</h2>
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <span class="diagram-title">Technology Stack - Detailed Component Overview</span>
+                    <div class="diagram-toolbar-actions">
+                        <button class="zoom-in">+</button><button class="zoom-out">−</button><button
+                            class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="diagram-viewport">
+                    <img src="../../diagrams/architecture/Technology Stack - Detailed Component Overview.svg"
+                        alt="Technology Stack Diagram showing Go, PostgreSQL, React, and Infrastructure components">
+                </div>
+            </div>
+
+            <h2 id="backend">Backend & Security</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Technology</th>
+                        <th>Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Language</strong></td>
+                        <td>Go 1.21+</td>
+                        <td>Memory safety, strong static typing, excellent concurrency, native compilation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Crypto</strong></td>
+                        <td>BoringCrypto / Go Standard Lib</td>
+                        <td>FIPS-validated cryptographic primitives, constant-time implementations.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Web Server</strong></td>
+                        <td>Go <code>net/http</code></td>
+                        <td>Production-ready standard library, no heavy framework overhead.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="data">Data & Storage</h2>
+            <ul>
+                <li><strong>PostgreSQL 15+:</strong> Object-Relational Database with robust Row-Level Security (RLS) and
+                    JSONB support.</li>
+                <li><strong>Redis 7+:</strong> In-memory data structure store for high-performance caching and rate
+                    limiting.</li>
+                <li><strong>S3-Compatible Object Storage:</strong> Scalable, durable storage for encrypted document
+                    files.</li>
+            </ul>
+
+            <h2 id="frontend">Frontend</h2>
+            <ul>
+                <li><strong>React:</strong> Component-based UI library for dynamic interfaces.</li>
+                <li><strong>TypeScript:</strong> Type-safety for frontend code, reducing runtime errors.</li>
+                <li><strong>Tailwind CSS:</strong> Utility-first CSS framework for consistent, secure UI styling.</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="network.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Network Architecture</div>
+                </a>
+                <a href="../security/overview.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Security Overview →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#diagram">Diagram</a>
+            <a class="toc-link" href="#backend">Backend & Security</a>
+            <a class="toc-link" href="#data">Data & Storage</a>
+            <a class="toc-link" href="#frontend">Frontend</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

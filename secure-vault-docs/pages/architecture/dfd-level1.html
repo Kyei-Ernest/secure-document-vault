@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 1 DFD - SecureVault Docs</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script><script src="../../js/template.js" defer></script>
+</head>
+<body data-section="architecture">
+  <div id="navbar-placeholder"></div>
+  <div class="doc-layout">
+    <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+    <main class="doc-content">
+      <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a href="overview.html">Architecture</a><span class="sep">/</span><span>Level 1 DFD</span></nav>
+      <h1>Level 1 Data Flow Diagram</h1>
+      <p>The Level 1 DFD decomposes the single system process from the Context Level into <strong>four major subsystems</strong>: Authentication & Authorization, Document Management, Encryption/Decryption, and Audit & Logging. Each subsystem shows its data flows to internal data stores and external entities.</p>
+
+      <h2 id="diagram">Diagram</h2>
+      <div class="diagram-container">
+        <div class="diagram-toolbar">
+          <span class="diagram-title">Level 1 DFD — Major Process Decomposition</span>
+          <div class="diagram-toolbar-actions"><button class="zoom-in">+</button><button class="zoom-out">−</button><button class="zoom-reset">↺</button><button class="zoom-fullscreen">⛶</button></div>
+        </div>
+        <div class="diagram-viewport">
+          <img src="../../diagrams/dfd/Secure Intelligence Document Vault - Level 1 DFD.png" alt="Level 1 DFD showing four major processes: Authentication, Document Management, Encryption, and Audit with their data stores and flows">
+        </div>
+      </div>
+
+      <h2 id="processes">Major Processes</h2>
+      <table>
+        <thead><tr><th>Process</th><th>ID</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Authentication & Authorization</strong></td><td>1.0</td><td>User identity verification, JWT management, RBAC/ABAC enforcement</td></tr>
+          <tr><td><strong>Document Management</strong></td><td>2.0</td><td>Document CRUD, versioning, search, sharing workflows</td></tr>
+          <tr><td><strong>Encryption/Decryption</strong></td><td>3.0</td><td>AES-256-GCM encryption, key management, envelope encryption</td></tr>
+          <tr><td><strong>Audit & Logging</strong></td><td>4.0</td><td>Immutable event logging, hash chaining, compliance reporting</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="data-stores">Data Stores</h2>
+      <ul>
+        <li><strong>D1: User Database</strong> — credentials, roles, MFA secrets</li>
+        <li><strong>D2: Document Database</strong> — metadata, versions, permissions</li>
+        <li><strong>D3: Encrypted Storage</strong> — encrypted document blobs</li>
+        <li><strong>D4: Key Store</strong> — encrypted DEKs, key versions</li>
+        <li><strong>D5: Audit Log</strong> — immutable, hash-chained event records</li>
+      </ul>
+
+      <h2 id="related">Related Diagrams</h2>
+      <ul>
+        <li><a href="dfd-context.html">Context Level DFD</a> — parent diagram</li>
+        <li><a href="dfd-document.html">Document Management DFD (Level 2)</a> — decomposition of Process 2.0</li>
+        <li><a href="dfd-encryption.html">Encryption Service DFD (Level 2)</a> — decomposition of Process 3.0</li>
+        <li><a href="dfd-audit.html">Audit Service DFD (Level 2)</a> — decomposition of Process 4.0</li>
+        <li><a href="dfd-auth.html">Authentication Service DFD (Level 2)</a> — decomposition of Process 1.0</li>
+      </ul>
+      <div class="page-nav">
+        <a href="dfd-context.html" class="page-nav-link"><div class="page-nav-dir">Previous</div><div class="page-nav-title">← Context Level DFD</div></a>
+        <a href="dfd-document.html" class="page-nav-link next"><div class="page-nav-dir">Next</div><div class="page-nav-title">Document Management DFD →</div></a>
+      </div>
+    </main>
+    <aside class="doc-toc">
+      <div class="doc-toc-title">On This Page</div>
+      <a class="toc-link" href="#diagram">Diagram</a>
+      <a class="toc-link" href="#processes">Major Processes</a>
+      <a class="toc-link" href="#data-stores">Data Stores</a>
+      <a class="toc-link" href="#related">Related Diagrams</a>
+    </aside>
+  </div>
+  <div id="footer-placeholder"></div>
+</body>
+</html>

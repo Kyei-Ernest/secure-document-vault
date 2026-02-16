@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Summary - SecureVault Docs</title>
+    <meta name="description" content="Executive overview of the Secure Intelligence Document Vault system">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="overview">
+    <div id="navbar-placeholder"></div>
+
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+
+        <main class="doc-content">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a> <span class="sep">/</span>
+                <a href="executive-summary.html">Overview</a> <span class="sep">/</span>
+                <span>Executive Summary</span>
+            </nav>
+
+            <h1>Secure Intelligence Document Vault</h1>
+
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ About This Document</div>
+                <p>This executive summary provides a high-level overview of the Secure Intelligence Document Vault, its
+                    capabilities, compliance posture, and value proposition for government and enterprise stakeholders.
+                </p>
+            </div>
+
+            <h2 id="overview">Overview</h2>
+            <p>The <strong>Secure Intelligence Document Vault</strong> is a production-ready, government-grade document
+                management system engineered to meet the most demanding security requirements in the federal and defense
+                sectors. Built with pure Go and zero external frameworks, the system provides military-level AES-256-GCM
+                encryption, comprehensive role-based access control (RBAC), immutable cryptographically-chained audit
+                logs, and full FIPS 140-3 compliance.</p>
+            <p>Designed from the ground up with <strong>zero-trust architecture principles</strong> and
+                <strong>defense-in-depth security</strong>, every component of the system operates under the assumption
+                that the network is compromised. Authentication is verified explicitly at every boundary, access follows
+                the principle of least privilege, and all operations are logged to a tamper-proof audit trail.</p>
+            <p>The vault supports <strong>horizontal scaling</strong> from 2 to over 100 instances, maintaining a 99.99%
+                uptime SLA through multi-availability-zone deployment, automated failover, and comprehensive disaster
+                recovery capabilities.</p>
+
+            <h2 id="capabilities">Key Capabilities</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th>Description</th>
+                        <th>Standard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Enterprise-Grade Security</strong></td>
+                        <td>AES-256-GCM encryption with envelope encryption and automatic key rotation via HSM</td>
+                        <td>FIPS 140-3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comprehensive Access Control</strong></td>
+                        <td>7-level RBAC hierarchy combined with ABAC policy engine and document classification</td>
+                        <td>NIST AC-*</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complete Audit Trail</strong></td>
+                        <td>Immutable, cryptographically-chained logs with Merkle tree verification</td>
+                        <td>NIST AU-*</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Document Versioning</strong></td>
+                        <td>Full version history with content-addressable storage and point-in-time restore</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>High Availability</strong></td>
+                        <td>99.99% uptime with multi-AZ deployment, automated failover, and DR procedures</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multi-Factor Authentication</strong></td>
+                        <td>TOTP, FIDO2/WebAuthn hardware tokens, and biometric support</td>
+                        <td>NIST IA-*</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="compliance">Compliance & Standards</h2>
+            <p>The system is designed to meet or exceed the following standards:</p>
+            <ul>
+                <li><strong>NIST SP 800-53 Rev. 5</strong> — Security and Privacy Controls for Federal Information
+                    Systems (20 control families)</li>
+                <li><strong>NIST SP 800-171 Rev. 3</strong> — Protecting Controlled Unclassified Information (110+
+                    requirements)</li>
+                <li><strong>NIST SP 800-172</strong> — Enhanced Security Requirements for critical programs</li>
+                <li><strong>FIPS 140-3</strong> — Cryptographic Module Validation (targeting Level 3)</li>
+                <li><strong>SOC 2 Type II</strong> — Service Organization Controls</li>
+                <li><strong>ISO 27001</strong> — Information Security Management System</li>
+                <li><strong>Zero Trust Architecture</strong> — Per NIST SP 800-207 principles</li>
+            </ul>
+
+            <h2 id="technical">Technical Highlights</h2>
+            <div class="callout callout-tip">
+                <div class="callout-title">💡 Why No Frameworks?</div>
+                <p>Using pure Go with the standard library minimizes the attack surface, eliminates supply chain risks
+                    from third-party dependencies, and ensures every line of code is auditable for government compliance
+                    requirements.</p>
+            </div>
+            <ul>
+                <li><strong>Language:</strong> Pure Go 1.21+ — no external frameworks, standard library only</li>
+                <li><strong>Encryption:</strong> AES-256-GCM with envelope encryption and automatic key rotation</li>
+                <li><strong>Database:</strong> PostgreSQL 15+ with Row-Level Security (RLS) and full encryption</li>
+                <li><strong>Architecture:</strong> Microservices with defense-in-depth design and clear service
+                    boundaries</li>
+                <li><strong>Authentication:</strong> Argon2id password hashing, JWT with HMAC-SHA256, TOTP MFA</li>
+                <li><strong>Key Management:</strong> HSM integration (AWS KMS / Azure Key Vault / Google Cloud KMS)</li>
+                <li><strong>Scalability:</strong> Horizontal scaling from 2 to 100+ instances with stateless services
+                </li>
+                <li><strong>Monitoring:</strong> Prometheus metrics, ELK Stack logging, Grafana dashboards</li>
+            </ul>
+
+            <h2 id="use-cases">Use Cases</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sector</th>
+                        <th>Use Case</th>
+                        <th>Key Requirement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Intelligence Agencies</td>
+                        <td>Classified document management</td>
+                        <td>FIPS 140-3 Level 3, compartmentalized access</td>
+                    </tr>
+                    <tr>
+                        <td>Defense Contractors</td>
+                        <td>CUI and FCI protection</td>
+                        <td>NIST SP 800-171/172 compliance</td>
+                    </tr>
+                    <tr>
+                        <td>Government Agencies</td>
+                        <td>NIST-compliant document storage</td>
+                        <td>FedRAMP Ready, NIST 800-53</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare</td>
+                        <td>HIPAA-compliant medical records</td>
+                        <td>Encryption at rest and in transit</td>
+                    </tr>
+                    <tr>
+                        <td>Legal Firms</td>
+                        <td>Attorney-client privileged documents</td>
+                        <td>Immutable audit trail, access controls</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Services</td>
+                        <td>SEC/FINRA document retention</td>
+                        <td>7-year retention, WORM compliance</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="architecture">Architecture Overview</h2>
+            <p>The system employs a six-layer microservices architecture:</p>
+            <ol>
+                <li><strong>Presentation Layer</strong> — Web, mobile, and admin portal interfaces</li>
+                <li><strong>API Gateway & Security Layer</strong> — TLS 1.3, rate limiting, WAF, request validation</li>
+                <li><strong>Application Services Layer</strong> — Auth, Authorization, Document, Encryption, and Audit
+                    services</li>
+                <li><strong>Data Persistence Layer</strong> — PostgreSQL, Object Storage, Redis, Audit Database</li>
+                <li><strong>External Services</strong> — KMS, MFA providers, email/SMS gateways</li>
+                <li><strong>Infrastructure & Monitoring</strong> — Prometheus, ELK, Grafana, automated backups</li>
+            </ol>
+
+            <!-- Page Navigation -->
+            <div class="page-nav">
+                <div></div>
+                <a href="key-features.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Key Features →</div>
+                </a>
+            </div>
+        </main>
+
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#overview">Overview</a>
+            <a class="toc-link" href="#capabilities">Key Capabilities</a>
+            <a class="toc-link" href="#compliance">Compliance & Standards</a>
+            <a class="toc-link" href="#technical">Technical Highlights</a>
+            <a class="toc-link" href="#use-cases">Use Cases</a>
+            <a class="toc-link" href="#architecture">Architecture Overview</a>
+        </aside>
+    </div>
+
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

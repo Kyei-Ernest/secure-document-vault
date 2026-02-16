@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance & Standards - SecureVault Docs</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/template.js" defer></script>
+</head>
+
+<body data-section="overview">
+    <div id="navbar-placeholder"></div>
+    <div class="doc-layout">
+        <aside class="doc-sidebar" id="sidebar-placeholder"></aside>
+        <main class="doc-content">
+            <nav class="breadcrumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a
+                    href="executive-summary.html">Overview</a><span class="sep">/</span><span>Compliance &
+                    Standards</span></nav>
+            <h1>Compliance & Standards</h1>
+            <p>The Secure Intelligence Document Vault is engineered from the ground up to meet or exceed the most
+                demanding government and enterprise security compliance frameworks. This page provides an overview of
+                each standard and how the system addresses its requirements.</p>
+
+            <h2 id="nist-800-53">NIST SP 800-53 Rev. 5</h2>
+            <p><strong>Security and Privacy Controls for Federal Information Systems</strong> — the most comprehensive
+                catalog of security controls for federal information systems and organizations. It covers 20 control
+                families including Access Control (AC), Audit & Accountability (AU), Cryptographic Protection (SC), and
+                Identification & Authentication (IA).</p>
+            <div class="callout callout-info">
+                <div class="callout-title">ℹ️ Applicability</div>
+                <p>Mandatory for all federal information systems and government contractors processing, storing, or
+                    transmitting sensitive federal data.</p>
+            </div>
+            <p><strong>Key controls implemented:</strong></p>
+            <ul>
+                <li><strong>AC-2:</strong> Account Management — automated provisioning and deprovisioning</li>
+                <li><strong>AC-6:</strong> Least Privilege — RBAC with granular permission model</li>
+                <li><strong>AU-2:</strong> Audit Events — comprehensive event logging</li>
+                <li><strong>AU-10:</strong> Non-Repudiation — cryptographic proof of operations</li>
+                <li><strong>IA-2:</strong> Identification and Authentication — MFA mandatory</li>
+                <li><strong>SC-12:</strong> Cryptographic Key Establishment — HSM-backed key management</li>
+                <li><strong>SC-13:</strong> Cryptographic Protection — FIPS-validated algorithms</li>
+                <li><strong>SC-28:</strong> Protection of Information at Rest — AES-256-GCM</li>
+            </ul>
+
+            <h2 id="nist-800-171">NIST SP 800-171 Rev. 3</h2>
+            <p><strong>Protecting Controlled Unclassified Information (CUI)</strong> — defines 110+ security
+                requirements derived from NIST 800-53, organized into 14 requirement families. Required for all
+                contractors and organizations handling CUI.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Family</th>
+                        <th>Requirements</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Access Control</td>
+                        <td>14 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                    <tr>
+                        <td>Audit & Accountability</td>
+                        <td>9 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                    <tr>
+                        <td>Configuration Management</td>
+                        <td>9 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                    <tr>
+                        <td>Identification & Auth</td>
+                        <td>11 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                    <tr>
+                        <td>System & Comm Protection</td>
+                        <td>16 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                    <tr>
+                        <td>System & Info Integrity</td>
+                        <td>10 requirements</td>
+                        <td><span class="status-badge status-mitigated">✓ Implemented</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="fips-140-3">FIPS 140-3</h2>
+            <p><strong>Federal Information Processing Standard for Cryptographic Modules</strong> — validates that
+                cryptographic implementations meet federal security requirements. The system targets <strong>Level
+                    3</strong> compliance, which adds tamper-resistance and identity-based authentication.</p>
+            <ul>
+                <li><strong>Level 1:</strong> Basic security — software cryptographic module ✓</li>
+                <li><strong>Level 2:</strong> Tamper-evidence + role-based authentication ✓</li>
+                <li><strong>Level 3:</strong> Tamper-resistance + identity-based authentication (target)</li>
+                <li>Uses Go's BoringCrypto fork for FIPS-validated cryptographic primitives</li>
+                <li>All algorithms are FIPS-approved: AES, SHA-256, HMAC, RSA</li>
+            </ul>
+
+            <h2 id="soc2">SOC 2 Type II</h2>
+            <p>Service Organization Controls providing assurance over security, availability, processing integrity,
+                confidentiality, and privacy. The system's comprehensive logging, access controls, and encryption
+                directly support SOC 2 trust service criteria.</p>
+
+            <h2 id="iso-27001">ISO 27001</h2>
+            <p>International standard for Information Security Management Systems (ISMS). The system's architecture and
+                operational controls are aligned to Annex A control objectives for access management, cryptography,
+                operations security, and compliance.</p>
+
+            <h2 id="zero-trust">Zero Trust Architecture (NIST SP 800-207)</h2>
+            <p>Implementation follows the three core tenets:</p>
+            <ol>
+                <li><strong>Verify explicitly</strong> — every request authenticated and authorized regardless of origin
+                </li>
+                <li><strong>Use least privilege</strong> — just-in-time, just-enough access with RBAC + ABAC</li>
+                <li><strong>Assume breach</strong> — micro-segmentation, E2E encryption, continuous verification</li>
+            </ol>
+
+            <div class="page-nav">
+                <a href="key-features.html" class="page-nav-link">
+                    <div class="page-nav-dir">Previous</div>
+                    <div class="page-nav-title">← Key Features</div>
+                </a>
+                <a href="use-cases.html" class="page-nav-link next">
+                    <div class="page-nav-dir">Next</div>
+                    <div class="page-nav-title">Use Cases →</div>
+                </a>
+            </div>
+        </main>
+        <aside class="doc-toc">
+            <div class="doc-toc-title">On This Page</div>
+            <a class="toc-link" href="#nist-800-53">NIST SP 800-53</a>
+            <a class="toc-link" href="#nist-800-171">NIST SP 800-171</a>
+            <a class="toc-link" href="#fips-140-3">FIPS 140-3</a>
+            <a class="toc-link" href="#soc2">SOC 2 Type II</a>
+            <a class="toc-link" href="#iso-27001">ISO 27001</a>
+            <a class="toc-link" href="#zero-trust">Zero Trust</a>
+        </aside>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>
