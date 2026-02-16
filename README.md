@@ -25,7 +25,7 @@ The system is built on a modern microservices architecture comprising six distin
 5.  **External Services**: Zero-knowledge integration points.
 6.  **Infrastructure**: Hardened environment configurations.
 
-See the [Architecture Overview](pages/architecture/overview.html) in the documentation for detailed diagrams and specifications.
+See the [Architecture Overview](https://kyei-ernest.github.io/secure-document-vault/secure-vault-docs/pages/architecture/overview.html) in the documentation for detailed diagrams and specifications.
 
 ## ✅ Compliance & Standards
 
