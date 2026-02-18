@@ -492,83 +492,8 @@ Coverage targets:
 
 ## 📖 Documentation
 
-Full technical documentation, including installation guides, API references, and security deep-dives, is available in the `secure-vault-docs/` directory or hosted at [Documentation Site](https://kyei-ernest.github.io/secure-document-vault/).
+Full technical documentation, including installation guides, API references, and security deep-dives, is available in the `secure-vault-docs/` directory or hosted at [Documentation Site](https://kyei-ernest.github.io/secure-document-vault/secure-vault-docs).
 
-### Local Documentation
-
-To view the documentation locally:
-1.  Navigate to the `secure-vault-docs` directory.
-2.  Open `index.html` in your browser.
-
-### Key Documentation
-
-*   **[Architecture Overview](docs/architecture/)** - System design and component diagrams
-*   **[API Reference](docs/api/)** - Complete API endpoint documentation
-*   **[Security Model](docs/security/)** - STRIDE threat model and mitigations
-*   **[Deployment Guide](docs/deployment/)** - Production deployment instructions
-*   **[Compliance Guide](docs/compliance/)** - NIST SP 800-171 compliance mapping
-
----
-
-## 🔍 API Endpoints
-
-### Authentication
-
-```bash
-# Register new user
-POST /api/v1/auth/register
-Content-Type: application/json
-{
-  "username": "analyst",
-  "email": "analyst@agency.gov",
-  "password": "SecurePass123!@#",
-  "role": "user",
-  "clearance_level": 3
-}
-
-# Login
-POST /api/v1/auth/login
-Content-Type: application/json
-{
-  "username": "analyst",
-  "password": "SecurePass123!@#"
-}
-
-# Response includes JWT tokens:
-{
-  "access_token": "eyJhbGc...",
-  "refresh_token": "eyJhbGc...",
-  "expires_in": 900
-}
-
-# Get current user
-GET /api/v1/auth/me
-Authorization: Bearer <access_token>
-```
-
-### Documents
-
-```bash
-# Upload document
-POST /api/v1/documents
-Authorization: Bearer <access_token>
-Content-Type: multipart/form-data
-- file: <document_file>
-- classification_level: 3
-- title: "Classified Report"
-
-# List documents
-GET /api/v1/documents
-Authorization: Bearer <access_token>
-
-# Download document
-GET /api/v1/documents/{id}
-Authorization: Bearer <access_token>
-```
-
-*Full API documentation available in the [API Reference](docs/api/).*
-
----
 
 ## 🛠️ Troubleshooting
 
@@ -656,7 +581,6 @@ openssl rand -base64 32
 *   📋 **Phase 5 (Weeks 17-20)**: Testing, optimization, monitoring, deployment automation
 *   📋 **Phase 6 (Weeks 21-24)**: Security audit, penetration testing, compliance certification
 
-See the [Project Building Plan](docs/PROJECT_BUILDING_PLAN.md) for detailed roadmap.
 
 ---
 
@@ -734,10 +658,9 @@ We will respond within **48 hours** and provide a timeline for resolution.
 
 ## 📞 Support & Contact
 
-*   **Documentation**: [Documentation Site](https://kyei-ernest.github.io/secure-document-vault/)
-*   **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/secure-intelligence-vault/issues)
-*   **Security**: security@[your-domain].com
-*   **General**: contact@[your-domain].com
+*   **Documentation**: [Documentation Site](https://kyei-ernest.github.io/secure-document-vault/secure-vault-docs)
+*   **Issues**: [GitHub Issues](https://github.com/Kyei-Ernest/secure-intelligence-vault/issues)
+*   **General**: ernestkyei101@gmail.com
 
 ---
 
