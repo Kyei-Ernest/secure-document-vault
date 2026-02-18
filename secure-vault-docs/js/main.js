@@ -156,28 +156,141 @@ function initDiagramViewers() {
   });
 }
 
-function openFullscreen(src, alt) {
-  let overlay = document.getElementById('diagramFullscreen');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'diagramFullscreen';
-    overlay.className = 'diagram-fullscreen';
-    overlay.innerHTML = `
-      <button class="diagram-fullscreen-close" onclick="closeFullscreen()">✕</button>
-      <img src="" alt="">
-    `;
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeFullscreen(); });
-    document.body.appendChild(overlay);
+// ---- Image Viewer (Lightbox) ----
+const ImageViewer = {
+  active: false,
+  currentIndex: 0,
+  images: [], // Array of {src, alt, originalEl}
+
+  init() {
+    // Collect all zoomable images
+    const contentImages = Array.from(document.querySelectorAll('.doc-content img:not(.no-zoom)'));
+
+    // Also include diagram images if they aren't duplicates (diagram viewers might duplicate logic, 
+    // but here we just want a master list for the gallery if desired. 
+    // Actually, let's keep it simple: content images are part of the gallery.)
+    this.images = contentImages.map(img => ({
+      src: img.src,
+      alt: img.alt,
+      originalEl: img
+    }));
+
+    // Attach click listeners
+    this.images.forEach((imgObj, index) => {
+      imgObj.originalEl.addEventListener('click', (e) => {
+        // If inside a diagram viewer, the "fullscreen" button might handle it, 
+        // but the image itself also clicks. Let's handle it here.
+        e.stopPropagation();
+        this.open(index);
+      });
+    });
+
+    // Create DOM elements if they don't exist
+    if (!document.getElementById('imageViewer')) {
+      const viewer = document.createElement('div');
+      viewer.id = 'imageViewer';
+      viewer.className = 'image-viewer';
+      viewer.innerHTML = `
+        <div class="image-viewer-close" onclick="ImageViewer.close()">✕</div>
+        <div class="image-viewer-nav image-viewer-prev" onclick="ImageViewer.prev()">‹</div>
+        <div class="image-viewer-nav image-viewer-next" onclick="ImageViewer.next()">›</div>
+        <div class="image-viewer-content">
+          <img class="image-viewer-img" src="" alt="">
+          <div class="image-viewer-caption"></div>
+        </div>
+      `;
+      viewer.addEventListener('click', (e) => {
+        if (e.target === viewer || e.target.classList.contains('image-viewer-content')) {
+          this.close();
+        }
+      });
+      document.body.appendChild(viewer);
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (!this.active) return;
+        if (e.key === 'Escape') this.close();
+        if (e.key === 'ArrowLeft') this.prev();
+        if (e.key === 'ArrowRight') this.next();
+      });
+    }
+  },
+
+  open(index) {
+    if (index < 0 || index >= this.images.length) return;
+    this.currentIndex = index;
+    this.active = true;
+
+    const viewer = document.getElementById('imageViewer');
+    const imgEl = viewer.querySelector('.image-viewer-img');
+    const captionEl = viewer.querySelector('.image-viewer-caption');
+    const data = this.images[index];
+
+    imgEl.src = data.src;
+    imgEl.alt = data.alt;
+    captionEl.textContent = data.alt || '';
+
+    viewer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    this.updateNav();
+  },
+
+  close() {
+    this.active = false;
+    const viewer = document.getElementById('imageViewer');
+    viewer.classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
+  next() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.open(this.currentIndex + 1);
+    }
+  },
+
+  prev() {
+    if (this.currentIndex > 0) {
+      this.open(this.currentIndex - 1);
+    }
+  },
+
+  updateNav() {
+    const viewer = document.getElementById('imageViewer');
+    const prevBtn = viewer.querySelector('.image-viewer-prev');
+    const nextBtn = viewer.querySelector('.image-viewer-next');
+
+    // Hide/show arrows based on index
+    prevBtn.style.display = this.currentIndex > 0 ? 'flex' : 'none';
+    nextBtn.style.display = this.currentIndex < this.images.length - 1 ? 'flex' : 'none';
   }
-  overlay.querySelector('img').src = src;
-  overlay.querySelector('img').alt = alt || '';
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeFullscreen() {
-  const overlay = document.getElementById('diagramFullscreen');
-  if (overlay) overlay.classList.remove('active');
-  document.body.style.overflow = '';
+};
+
+// Global function for the diagram toolbar "Fullscreen" button to use
+function openFullscreen(src, alt) {
+  // Find index of this image in the pool if possible
+  const index = ImageViewer.images.findIndex(img => img.src === src);
+  if (index !== -1) {
+    ImageViewer.open(index);
+  } else {
+    // If not in the list (e.g. dynamically changed), just append and open? 
+    // Or fallback to ad-hoc open. Let's fallback to ad-hoc opening using the same viewer.
+    // We treat it as a standalone image (no gallery nav).
+    ImageViewer.active = true;
+    const viewer = document.getElementById('imageViewer');
+    const imgEl = viewer.querySelector('.image-viewer-img');
+    const captionEl = viewer.querySelector('.image-viewer-caption');
+
+    imgEl.src = src;
+    imgEl.alt = alt || '';
+    captionEl.textContent = alt || '';
+
+    viewer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Hide nav buttons
+    viewer.querySelector('.image-viewer-prev').style.display = 'none';
+    viewer.querySelector('.image-viewer-next').style.display = 'none';
+  }
 }
 
 // ---- Scroll Spy (TOC) ----
@@ -252,6 +365,7 @@ function highlightActiveSidebar() {
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   initDiagramViewers();
+  ImageViewer.init();
   initScrollSpy();
   initCopyButtons();
   highlightActiveSidebar();
