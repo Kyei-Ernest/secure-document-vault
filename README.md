@@ -615,52 +615,6 @@ We welcome contributions to enhance the security and functionality of the Secure
 *   Document any security-related changes
 *   Follow OWASP secure coding practices
 
----
-
-## 📄 License & Classification
-
-**Copyright © 2025 Secure Intelligence Document Vault. All rights reserved.**
-
-**Classification: UNCLASSIFIED // FOR OFFICIAL USE ONLY**
-
-This software is protected by copyright law and international treaties. Unauthorized reproduction or distribution may result in severe civil and criminal penalties.
-
----
-
-## 🔒 Security
-
-### Reporting Security Vulnerabilities
-
-**DO NOT create public GitHub issues for security vulnerabilities.**
-
-To report a security issue, please email: **security@[your-domain].com**
-
-Include:
-*   Detailed description of the vulnerability
-*   Steps to reproduce
-*   Potential impact assessment
-*   Suggested fix (if available)
-
-We will respond within **48 hours** and provide a timeline for resolution.
-
-### Security Best Practices
-
-*   Always use strong, unique passwords
-*   Enable MFA for all accounts
-*   Rotate encryption keys regularly (every 90 days)
-*   Keep all dependencies up to date
-*   Review audit logs regularly
-*   Follow principle of least privilege
-*   Use TLS 1.3 in production
-*   Never disable security features
-
----
-
-## 📞 Support & Contact
-
-*   **Documentation**: [Documentation Site](https://kyei-ernest.github.io/secure-document-vault/secure-vault-docs)
-*   **Issues**: [GitHub Issues](https://github.com/Kyei-Ernest/secure-intelligence-vault/issues)
-*   **General**: ernestkyei101@gmail.com
 
 ---
 
